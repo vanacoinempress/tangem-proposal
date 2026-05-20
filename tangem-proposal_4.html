@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creator Arc x Tangem | Campaign Proposal</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f5f0;
+    --orange: #FF6B2B;
+    --orange-dim: rgba(255, 107, 43, 0.15);
+    --gray: #1a1a1a;
+    --gray-mid: #2a2a2a;
+    --gray-light: #666;
+    --border: rgba(255,255,255,0.08);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; overflow-x: hidden; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; background: rgba(10,10,10,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo svg { width: 36px; height: 36px; }
+  .logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 2px; color: var(--white); }
+  .nav-right { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gray-light); letter-spacing: 1px; text-transform: uppercase; }
+  section { padding: 120px 48px 80px; max-width: 1100px; margin: 0 auto; }
+  section:first-of-type { padding-top: 160px; }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 24px; }
+  h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px, 8vw, 96px); line-height: 0.95; letter-spacing: 1px; margin-bottom: 32px; }
+  h1 span { color: var(--orange); }
+  h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 56px); letter-spacing: 1px; line-height: 1; margin-bottom: 32px; }
+  h2 span { color: var(--orange); }
+  p { color: rgba(245,245,240,0.75); max-width: 640px; margin-bottom: 16px; font-size: 15px; font-weight: 300; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 100px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,107,43,0.08) 0%, transparent 70%); pointer-events: none; }
+  .hero-meta { display: flex; gap: 48px; margin-top: 48px; flex-wrap: wrap; }
+  .hero-meta-item label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray-light); display: block; margin-bottom: 4px; }
+  .hero-meta-item span { font-size: 14px; color: var(--white); font-weight: 500; }
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; margin: 48px 0; }
+  .stat { background: var(--gray); padding: 32px; text-align: center; }
+  .stat-number { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--orange); line-height: 1; margin-bottom: 8px; }
+  .stat-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray-light); }
+  .callout { background: var(--orange-dim); border: 1px solid rgba(255,107,43,0.3); border-radius: 2px; padding: 28px 32px; margin: 32px 0; }
+  .callout-title { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 12px; }
+  .callout p { color: rgba(245,245,240,0.85); margin: 0; font-size: 14px; }
+  .callout a { color: var(--orange); text-decoration: none; font-weight: 500; }
+  .callout a:hover { text-decoration: underline; }
+  .deliverables { list-style: none; margin-top: 16px; }
+  .deliverables li { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); color: rgba(245,245,240,0.8); font-size: 14px; }
+  .deliverables li:last-child { border-bottom: none; }
+  .deliverables li::before { content: '→'; color: var(--orange); font-family: 'DM Mono', monospace; flex-shrink: 0; margin-top: 1px; }
+  .tiers-table { width: 100%; border-collapse: collapse; margin-top: 32px; font-size: 14px; }
+  .tiers-table th { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray-light); padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+  .tiers-table td { padding: 20px 16px; border-bottom: 1px solid var(--border); color: rgba(245,245,240,0.8); vertical-align: top; }
+  .tiers-table tr:last-child td { border-bottom: none; }
+  .tier-badge { display: inline-block; background: var(--orange-dim); border: 1px solid rgba(255,107,43,0.3); color: var(--orange); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 1px; padding: 4px 10px; border-radius: 2px; }
+  .price-range { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--white); font-weight: 500; }
+  .creator-count { color: var(--orange); font-weight: 600; }
+  .months-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; margin-top: 32px; }
+  .month-card { background: var(--gray); padding: 32px 24px; }
+  .month-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+  .month-title { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 1px; margin-bottom: 20px; color: var(--white); }
+  .month-stat { margin-bottom: 12px; }
+  .month-stat label { font-size: 11px; color: var(--gray-light); display: block; margin-bottom: 2px; letter-spacing: 0.5px; }
+  .month-stat span { font-size: 14px; color: var(--white); font-weight: 500; }
+  .calculator { background: var(--gray); border: 1px solid var(--border); border-radius: 2px; padding: 40px; margin-top: 32px; }
+  .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+  .calc-section-title { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 20px; grid-column: 1 / -1; }
+  .input-group { margin-bottom: 20px; }
+  .input-group label { display: block; font-size: 12px; color: var(--gray-light); margin-bottom: 8px; letter-spacing: 0.5px; }
+  .input-group label span { color: rgba(245,245,240,0.4); font-family: 'DM Mono', monospace; font-size: 11px; display: block; margin-top: 2px; }
+  .input-group input[type="number"] { width: 100%; background: var(--black); border: 1px solid var(--border); border-radius: 2px; padding: 12px 16px; color: var(--white); font-family: 'DM Mono', monospace; font-size: 14px; outline: none; transition: border-color 0.2s; }
+  .input-group input[type="number"]:focus { border-color: var(--orange); }
+  .videos-selector, .months-selector { display: flex; gap: 8px; }
+  .vid-btn, .month-btn { flex: 1; background: var(--black); border: 1px solid var(--border); border-radius: 2px; padding: 12px; color: var(--gray-light); font-family: 'DM Mono', monospace; font-size: 14px; cursor: pointer; transition: all 0.2s; text-align: center; }
+  .vid-btn.active, .month-btn.active, .vid-btn:hover, .month-btn:hover { border-color: var(--orange); color: var(--orange); background: var(--orange-dim); }
+  .calc-divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  .results-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+  .result-box { background: var(--black); padding: 24px 20px; text-align: center; }
+  .result-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray-light); margin-bottom: 10px; }
+  .result-value { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--orange); line-height: 1; }
+  .result-sub { font-size: 13px; color: var(--orange); margin-top: 4px; opacity: 0.8; }
+  .mgmt-fee-row { display: flex; align-items: center; justify-content: space-between; margin-top: 24px; padding: 20px 24px; background: var(--orange-dim); border: 1px solid rgba(255,107,43,0.3); border-radius: 2px; }
+  .mgmt-fee-row label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); }
+  .mgmt-fee-input-wrap { display: flex; align-items: center; gap: 8px; }
+  .mgmt-fee-input-wrap span { color: var(--white); font-family: 'DM Mono', monospace; font-size: 16px; }
+  .mgmt-fee-row input { background: transparent; border: none; border-bottom: 1px solid rgba(255,107,43,0.5); color: var(--white); font-family: 'DM Mono', monospace; font-size: 16px; width: 120px; text-align: right; outline: none; padding: 4px 0; }
+  .total-row { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; padding: 24px; background: var(--gray); border: 1px solid var(--border); border-radius: 2px; }
+  .total-row label { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; color: var(--white); }
+  .total-value { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--orange); }
+  .footer-section { border-top: 1px solid var(--border); padding: 80px 48px; max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .footer-left h2 { font-family: 'Bebas Neue', sans-serif; font-size: 48px; line-height: 1; margin-bottom: 16px; }
+  .footer-links { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; }
+  .footer-link { display: flex; align-items: center; gap: 12px; color: rgba(245,245,240,0.7); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .footer-link:hover { color: var(--orange); }
+  .footer-link-icon { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--orange); width: 20px; }
+  .cta-btn { display: inline-block; background: var(--orange); color: var(--black); font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; padding: 16px 40px; border-radius: 2px; text-decoration: none; margin-top: 32px; transition: opacity 0.2s; }
+  .cta-btn:hover { opacity: 0.85; }
+  .footer-bottom { border-top: 1px solid var(--border); padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gray-light); letter-spacing: 1px; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-up { opacity: 0; animation: fadeUp 0.7s ease forwards; }
+  .fade-up:nth-child(1) { animation-delay: 0.1s; }
+  .fade-up:nth-child(2) { animation-delay: 0.25s; }
+  .fade-up:nth-child(3) { animation-delay: 0.4s; }
+  .fade-up:nth-child(4) { animation-delay: 0.55s; }
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    section { padding: 100px 24px 60px; }
+    .stats-row, .months-grid { grid-template-columns: 1fr; }
+    .calc-grid { grid-template-columns: 1fr; }
+    .results-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-section { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
+    .footer-bottom { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+    .mgmt-fee-row { flex-direction: column; gap: 12px; align-items: flex-start; }
+    .total-row { flex-direction: column; gap: 8px; text-align: center; }
+  }
+  .store-grow-spend { margin: 48px 0; padding: 48px; border: 1px solid var(--border); border-radius: 2px; background: var(--gray); text-align: center; }
+  .sgs-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gray-light); margin-bottom: 32px; }
+  .sgs-words { display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: wrap; }
+  .sgs-word { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 7vw, 80px); letter-spacing: 2px; color: rgba(245,245,240,0.3); padding: 0 32px; transition: color 0.3s; }
+  .sgs-word.active { color: var(--orange); }
+  .sgs-word:hover { color: var(--white); }
+  .sgs-divider { width: 1px; height: 60px; background: var(--border); }
+  .sgs-sub { font-size: 14px; color: rgba(245,245,240,0.6); margin-top: 24px; max-width: 480px; margin-left: auto; margin-right: auto; margin-bottom: 0; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 10 A40 40 0 0 1 90 50" stroke="white" stroke-width="8" stroke-linecap="round" fill="none"/>
+      <path d="M10 50 A40 40 0 0 1 50 10" stroke="white" stroke-width="8" stroke-linecap="round" fill="none"/>
+      <polygon points="38,32 38,68 72,50" fill="white"/>
+    </svg>
+    <span class="logo-text">Creator Arc</span>
+  </div>
+  <div class="nav-right">Campaign Proposal for Tangem</div>
+</nav>
+
+<section class="hero">
+  <div class="section-label fade-up">Prepared for Riya / Tangem · May 2026</div>
+  <h1 class="fade-up">CREATOR<br><span>ACTIVATION</span><br>PROPOSAL</h1>
+  <p class="fade-up" style="max-width: 520px; font-size: 16px;">A structured, 3-month creator campaign to build Tangem's brand awareness through consistent, high-quality video content across Web3 audiences.</p>
+  <div class="hero-meta fade-up">
+    <div class="hero-meta-item"><label>Campaign Duration</label><span>3 Months</span></div>
+    <div class="hero-meta-item"><label>Creator Pool</label><span>100+ Vetted Creators</span></div>
+    <div class="hero-meta-item"><label>Avg Engagement Rate</label><span>5–6%+</span></div>
+    <div class="hero-meta-item"><label>Content Format</label><span>Short-form Video</span></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section>
+  <div class="section-label">01 · About Creator Arc</div>
+  <h2>THE <span>PROBLEM</span></h2>
+  <p>Tangem is already the top crypto wallet on Amazon US. You have the product. You have the proof. What's missing is consistent, relatable video content that makes people understand what Tangem actually does, beyond "hardware wallet."</p>
+  <p>Most people in Web3 have heard the name. Very few understand the full ecosystem. That gap is a distribution problem. And distribution is exactly what Creator Arc solves.</p>
+  <p>Creator Arc is a creator activation partner for Web3 projects. We work with a vetted pool of 100+ video creators who produce short-form content that educates, builds trust, and drives awareness at scale. Every campaign is managed end to end: creator sourcing, briefing, coordination, quality review, delivery, and reporting.</p>
+  <p>Founded by Vana (CoinEmpress), a Web3 content creator herself. We know what content works because we make it too.</p>
+
+  <div class="store-grow-spend">
+    <div class="sgs-label">Tangem Campaign Focus</div>
+    <div class="sgs-words">
+      <div class="sgs-word">Store.</div>
+      <div class="sgs-divider"></div>
+      <div class="sgs-word">Grow.</div>
+      <div class="sgs-divider"></div>
+      <div class="sgs-word active">Spend.</div>
+    </div>
+    <p class="sgs-sub">Creators will educate audiences on Tangem's full ecosystem. Not just the wallet. The whole experience.</p>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-number">100+</div><div class="stat-label">Vetted Creators</div></div>
+    <div class="stat"><div class="stat-number">$80K+</div><div class="stat-label">Paid Out to Creators</div></div>
+    <div class="stat"><div class="stat-number">5–6%</div><div class="stat-label">Avg Engagement Rate</div></div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-title">Fhenix Case Study · Privacy Backrooms Pilot</div>
+    <p>33 creators, 1 to 3 videos per creator per month. Follower growth from 21K to 32K in 3 months (+52%). ~279K estimated impressions, ~4.8% avg engagement rate. Reached <strong>#8 on the Kaito leaderboard.</strong> A visibility result that one-off campaigns simply cannot achieve.</p>
+    <p style="margin-top: 12px;"><a href="https://creatorarc-casestudy.vercel.app/" target="_blank">View full case study →</a></p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section>
+  <div class="section-label">02 · What's Included</div>
+  <h2>CAMPAIGN <span>MANAGEMENT</span></h2>
+  <p>Every campaign includes full end-to-end management. Here's exactly what Creator Arc delivers:</p>
+  <ul class="deliverables">
+    <li>Monthly prompt creation, tailored briefs per creator matched to their audience and content style</li>
+    <li>Creator briefing and onboarding, aligning every creator on brand tone, key messages, and deliverables</li>
+    <li>Deadline management and coordination, keeping all creators on schedule throughout the month</li>
+    <li>Content quality review, every video reviewed before posting to ensure it meets brand standards</li>
+    <li>Posting schedule oversight, ensuring content goes live at the right time across platforms</li>
+    <li>Performance tracking per creator, monitoring impressions, engagements, and engagement rate</li>
+    <li>Monthly campaign report, full summary of content delivered, reach, and performance metrics</li>
+    <li>Referral and UTM link setup for tracking traffic and conversions per creator (optional)</li>
+  </ul>
+</section>
+
+<hr class="divider">
+
+<section>
+  <div class="section-label">03 · Creator Tiers</div>
+  <h2>OUR <span>ROSTER</span></h2>
+  <p>Our creators are organized into 4 tiers based on follower count. Campaigns are built from a mix of tiers for the best balance of reach, engagement, and budget efficiency.</p>
+
+  <table class="tiers-table">
+    <thead>
+      <tr>
+        <th>Tier</th>
+        <th>Followers</th>
+        <th>Price per Video</th>
+        <th>Creators Available</th>
+        <th>Best For</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="tier-badge">TIER 1</span></td>
+        <td>1K – 3K</td>
+        <td><span class="price-range">$100 – $250</span></td>
+        <td><span class="creator-count">~21</span></td>
+        <td style="color: var(--gray-light); font-size: 13px;">High volume, niche community reach, strong engagement</td>
+      </tr>
+      <tr>
+        <td><span class="tier-badge">TIER 2</span></td>
+        <td>3K – 6K</td>
+        <td><span class="price-range">$250 – $400</span></td>
+        <td><span class="creator-count">~20</span></td>
+        <td style="color: var(--gray-light); font-size: 13px;">Growing audiences, solid track record, consistent output</td>
+      </tr>
+      <tr>
+        <td><span class="tier-badge">TIER 3</span></td>
+        <td>6K – 15K</td>
+        <td><span class="price-range">$400 – $800</span></td>
+        <td><span class="creator-count">~19</span></td>
+        <td style="color: var(--gray-light); font-size: 13px;">Established voices, broader reach, proven content quality</td>
+      </tr>
+      <tr>
+        <td><span class="tier-badge">TIER 4</span></td>
+        <td>15K+</td>
+        <td><span class="price-range">$800 – $1,000+</span></td>
+        <td><span class="creator-count">~6</span></td>
+        <td style="color: var(--gray-light); font-size: 13px;">Maximum visibility, high-impact content, authority positioning</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="margin-top: 20px; font-size: 13px; color: var(--gray-light);">* Pricing is indicative. Final rates are confirmed per creator based on brief, deliverable count, and exclusivity requirements.</p>
+</section>
+
+<hr class="divider">
+
+<section>
+  <div class="section-label">04 · Campaign Model</div>
+  <h2>3-MONTH <span>STRUCTURE</span></h2>
+  <p>We recommend a 3-month program. Month 1 tests creator fit and content angles. Months 2 and 3 double down on what works. The same approach drove 52% follower growth for Fhenix in 3 months.</p>
+  <p>Default: 2 videos per creator per month. Adjustable based on budget and goals.</p>
+
+  <div class="months-grid">
+    <div class="month-card">
+      <div class="month-label">Month 01</div>
+      <div class="month-title">Test & Learn</div>
+      <div class="month-stat"><label>Focus</label><span>Creator activation, tone testing, first content wave</span></div>
+      <div class="month-stat"><label>Deliverables</label><span>2 videos per creator + engagement on Tangem account</span></div>
+      <div class="month-stat"><label>Tracking</label><span>Unique referral links, impressions, engagement rate</span></div>
+    </div>
+    <div class="month-card">
+      <div class="month-label">Month 02</div>
+      <div class="month-title">Optimize</div>
+      <div class="month-stat"><label>Focus</label><span>Narrow to top performers, refine messaging</span></div>
+      <div class="month-stat"><label>Deliverables</label><span>2 videos per creator, updated prompts based on Month 1 data</span></div>
+      <div class="month-stat"><label>Tracking</label><span>Performance comparison, top creator identification</span></div>
+    </div>
+    <div class="month-card">
+      <div class="month-label">Month 03</div>
+      <div class="month-title">Scale</div>
+      <div class="month-stat"><label>Focus</label><span>Double down on winning creators and formats</span></div>
+      <div class="month-stat"><label>Deliverables</label><span>2 to 3 videos per creator, top performer roster identified</span></div>
+      <div class="month-stat"><label>Tracking</label><span>Full campaign report, ROI summary, long-term program proposal</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section>
+  <div class="section-label">05 · Budget Calculator</div>
+  <h2>BUILD YOUR <span>BUDGET</span></h2>
+  <p>Mix creator tiers to find the right balance of reach and budget. The management fee field is editable. Fill it in before sharing with Riya.</p>
+
+  <div class="calculator">
+    <div class="calc-section-title">Creator Mix</div>
+    <div class="calc-grid">
+      <div class="input-group">
+        <label>Tier 1 Creators <span>1K–3K followers · $100–$250/video · up to 21 available</span></label>
+        <input type="number" id="t1" min="0" max="21" value="0" oninput="calculate()">
+      </div>
+      <div class="input-group">
+        <label>Tier 2 Creators <span>3K–6K followers · $250–$400/video · up to 20 available</span></label>
+        <input type="number" id="t2" min="0" max="20" value="0" oninput="calculate()">
+      </div>
+      <div class="input-group">
+        <label>Tier 3 Creators <span>6K–15K followers · $400–$800/video · up to 19 available</span></label>
+        <input type="number" id="t3" min="0" max="19" value="0" oninput="calculate()">
+      </div>
+      <div class="input-group">
+        <label>Tier 4 Creators <span>15K+ followers · $800–$1,000+/video · up to 6 available</span></label>
+        <input type="number" id="t4" min="0" max="6" value="0" oninput="calculate()">
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Videos per Creator per Month</label>
+      <div class="videos-selector">
+        <div class="vid-btn active" onclick="setVideos(1, this)">1</div>
+        <div class="vid-btn" onclick="setVideos(2, this)">2</div>
+        <div class="vid-btn" onclick="setVideos(3, this)">3</div>
+      </div>
+    </div>
+
+    <div class="input-group" style="margin-top: 20px;">
+      <label>Campaign Duration</label>
+      <div class="months-selector">
+        <div class="month-btn" onclick="setMonths(1, this)">1 Month</div>
+        <div class="month-btn" onclick="setMonths(2, this)">2 Months</div>
+        <div class="month-btn active" onclick="setMonths(3, this)">3 Months</div>
+      </div>
+    </div>
+
+    <hr class="calc-divider">
+
+    <div class="results-grid">
+      <div class="result-box">
+        <div class="result-label">Total Creators</div>
+        <div class="result-value" id="res-creators">0</div>
+        <div class="result-sub">selected</div>
+      </div>
+      <div class="result-box">
+        <div class="result-label">Videos / Month</div>
+        <div class="result-value" id="res-videos-month">0</div>
+        <div class="result-sub">pieces of content</div>
+      </div>
+      <div class="result-box">
+        <div class="result-label">Total Videos</div>
+        <div class="result-value" id="res-videos-total">0</div>
+        <div class="result-sub">over campaign</div>
+      </div>
+      <div class="result-box">
+        <div class="result-label">Creator Cost</div>
+        <div class="result-value" id="res-cost-low" style="font-size: 24px;">$0 – $0</div>
+      </div>
+    </div>
+
+    <div class="mgmt-fee-row">
+      <div>
+        <label>Management Fee</label>
+        <div style="font-family: 'DM Mono', monospace; font-size: 11px; color: rgba(245,245,240,0.4); margin-top: 4px;" id="res-mgmt-breakdown">Select creators to calculate</div>
+      </div>
+      <div style="text-align: right;">
+        <div style="font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--orange);" id="res-mgmt-fee">$0</div>
+        <div style="font-family: 'DM Mono', monospace; font-size: 11px; color: rgba(245,245,240,0.4);">flat fee + 10% of creator cost</div>
+      </div>
+    </div>
+
+    <div class="total-row">
+      <label>Estimated Total</label>
+      <div class="total-value" id="res-total">$0 – $0</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<div class="footer-section">
+  <div class="footer-left">
+    <h2>LET'S<br><span style="color: var(--orange);">BUILD</span><br>THIS.</h2>
+    <p style="margin-top: 16px;">Ready to move forward? Book a call with Vana to align on creator selection, budget, and campaign kick-off timeline.</p>
+    <a href="https://calendly.com/vanacoinempress" target="_blank" class="cta-btn">Book a Call</a>
+  </div>
+  <div class="footer-right">
+    <div class="section-label" style="margin-bottom: 24px;">Get in Touch</div>
+    <div class="footer-links">
+      <a href="https://x.com/coinempress" target="_blank" class="footer-link"><span class="footer-link-icon">X</span>@coinempress</a>
+      <a href="https://x.com/creatorarchq" target="_blank" class="footer-link"><span class="footer-link-icon">X</span>@creatorarchq</a>
+      <a href="https://creatorarc.xyz" target="_blank" class="footer-link"><span class="footer-link-icon">→</span>creatorarc.xyz</a>
+      <a href="https://creatorarc-casestudy.vercel.app/" target="_blank" class="footer-link"><span class="footer-link-icon">→</span>View Case Study</a>
+      <a href="https://calendly.com/vanacoinempress" target="_blank" class="footer-link"><span class="footer-link-icon">→</span>calendly.com/vanacoinempress</a>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bottom">
+  <span>Creator Arc © 2026</span>
+  <span>Confidential · Prepared for Tangem</span>
+</div>
+
+<script>
+  let videosPerCreator = 1;
+  let months = 3;
+  const tiers = { t1: { low: 100, high: 250 }, t2: { low: 250, high: 400 }, t3: { low: 400, high: 800 }, t4: { low: 800, high: 1000 } };
+
+  function setVideos(n, el) {
+    videosPerCreator = n;
+    document.querySelectorAll('.vid-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+    calculate();
+  }
+
+  function setMonths(n, el) {
+    months = n;
+    document.querySelectorAll('.month-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+    calculate();
+  }
+
+  function getMgmtFlatPerMonth(totalCreators) {
+    if (totalCreators === 0) return 0;
+    if (totalCreators <= 10) return 1500;
+    if (totalCreators <= 20) return 2500;
+    return 3500;
+  }
+
+  function calculate() {
+    const t1 = parseInt(document.getElementById('t1').value) || 0;
+    const t2 = parseInt(document.getElementById('t2').value) || 0;
+    const t3 = parseInt(document.getElementById('t3').value) || 0;
+    const t4 = parseInt(document.getElementById('t4').value) || 0;
+    const totalCreators = t1 + t2 + t3 + t4;
+    const videosPerMonth = totalCreators * videosPerCreator;
+    const totalVideos = videosPerMonth * months;
+
+    const lowPerMonth = (t1 * tiers.t1.low + t2 * tiers.t2.low + t3 * tiers.t3.low + t4 * tiers.t4.low) * videosPerCreator;
+    const highPerMonth = (t1 * tiers.t1.high + t2 * tiers.t2.high + t3 * tiers.t3.high + t4 * tiers.t4.high) * videosPerCreator;
+    const totalLow = lowPerMonth * months;
+    const totalHigh = highPerMonth * months;
+
+    const flatPerMonth = getMgmtFlatPerMonth(totalCreators);
+    const flatTotal = flatPerMonth * months;
+    const percentLow = Math.round(totalLow * 0.10);
+    const percentHigh = Math.round(totalHigh * 0.10);
+    const mgmtLow = flatTotal + percentLow;
+    const mgmtHigh = flatTotal + percentHigh;
+
+    const grandLow = totalLow + flatTotal;
+    const grandHigh = totalHigh + flatTotal;
+
+    document.getElementById('res-creators').textContent = totalCreators;
+    document.getElementById('res-videos-month').textContent = videosPerMonth;
+    document.getElementById('res-videos-total').textContent = totalVideos;
+    document.getElementById('res-cost-low').textContent = '$' + totalLow.toLocaleString() + ' – $' + totalHigh.toLocaleString();
+    document.getElementById('res-mgmt-fee').textContent = totalCreators === 0 ? '$0' : '$' + flatTotal.toLocaleString();
+    document.getElementById('res-mgmt-breakdown').textContent = totalCreators === 0 ? 'Select creators to calculate' : '$' + flatPerMonth.toLocaleString() + '/mo flat for ' + totalCreators + ' creators x ' + months + ' month' + (months > 1 ? 's' : '') + ' + 10% on creator cost';
+    document.getElementById('res-total').textContent = '$' + grandLow.toLocaleString() + ' – $' + grandHigh.toLocaleString();
+  }
+
+  calculate();
+</script>
+</body>
+</html>
